@@ -1,0 +1,113 @@
+function inIframe () { try { return window.self !== window.top; } catch (e) { return true; } }
+
+var colors = ['#25c116', '#14b2be', '#1b15bf', '#b812be', '#620ebe', '#bb1612', '#bab414'];
+var currentQuote = '', currentAuthor = '';
+function openURL(url){
+  window.open(url, 'Share', 'width=550, height=400, toolbar=0, scrollbars=1 ,location=0 ,statusbar=0,menubar=0, resizable=0');
+}
+
+function getQuotes() {
+  return $.ajax({
+    headers: {
+      Accept: "application/json"
+    },
+    url: 'https://gist.githubusercontent.com/jeyakatsa/625f6893dd884575ac1a2ae6863ba439/raw/ec86e6fe29b291e6ad24ad74f81ba82aee3dfad5/quotes.json',
+    success: function(jsonQuotes) {
+      if (typeof jsonQuotes === 'string') {
+        quotesData = JSON.parse(jsonQuotes);
+        console.log('quotesData');
+        console.log(quotesData);
+      }
+    }
+  });
+}
+
+function getRandomQuote() {
+  return quotesData.quotes[Math.floor(Math.random() * quotesData.quotes.length)];
+}
+
+function getQuote() {
+
+  let randomQuote = getRandomQuote();
+  
+  currentQuote = randomQuote.quote;
+  currentAuthor = randomQuote.author;
+
+  if(inIframe())
+  {
+    $('#tweet-quote').attr('href', 'https://twitter.com/intent/tweet?text=' + encodeURIComponent('"' + currentQuote + '" ' + currentAuthor));
+
+  }
+  
+  $("#quote-text").animate(
+    { opacity: 0 },
+    500,
+    function() {
+      $(this).animate({ opacity: 1}, 1000);
+      $('#text').text(randomQuote.quote);
+    }
+  );
+
+  $("#author").animate(
+    { opacity: 0 },
+    500,
+    function() {
+      $(this).animate({ opacity: 1}, 1000);
+      $('#author').html(randomQuote.author);
+    }
+  );
+
+    
+  var color = Math.floor(Math.random() * colors.length);
+  $("html body").animate(
+    {
+      backgroundColor: colors[color],
+      color: colors[color]
+    },
+
+  );
+  $("#quote-box box-shadow").animate(
+    {
+      backgroundColor: colors[color]
+    },
+    500
+  );
+    $("#quote-box").animate(
+    {
+      backgroundColor: colors[color]
+    },
+    500
+  );
+      $("#new-quote").animate(
+    {
+      color: colors[color]
+    },
+    20
+  );
+        $("#tweet").animate(
+    {
+      color: colors[color]
+    },
+    40
+  );  
+          $("#quote").animate(
+    {
+      color: colors[color]
+    },
+    40
+  );  
+}
+
+$(document).ready(function() {
+  getQuotes().then(() => {
+    getQuote();
+  });
+
+  $('#new-quote').on('click', getQuote);
+
+  $('#tweet-quote').on('click', function() {
+    if(!inIframe()) {
+      openURL('https://twitter.com/intent/tweet?text=' + encodeURIComponent('"' + currentQuote + '" ' + currentAuthor));
+    }
+  });
+});
