@@ -1,0 +1,134 @@
+html,
+body {
+  text-align: center;
+  font-family: 'Arial', sans-serif;
+  color: white;
+  font-weight:400;
+  margin-left: 0%;
+  margin-right: 0%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 97vh;
+}
+#wrapper {
+  margin-top: 3vh;
+  background: white;
+  border: solid 30px white;
+  box-shadow: 0px 0px 30px 0px white;
+  border-radius: 30px;
+}
+#quote-box {
+  border-radius:30px;
+  position:relative;
+  width:450px;
+  padding:40px 40px;
+  display:table;
+  box-shadow: 0px 0px 10px 0px;  
+}
+
+  #quote-text {
+    text-align: left;
+  }
+  #text {
+    width:450px;
+    height:auto;
+    line-height: 20px;
+    margin-top: 20px;
+    color: white;
+    clear:both;
+    font-weight:100;
+    font-size:1em;
+  }
+  #author {
+    width:450px;
+    height:auto;
+    clear:both;
+    color: white;
+    padding-top:30px;
+    margin-right: 0%;
+    font-size:1em;
+    font-weight: 100;
+    text-align:right;
+  }
+  .buttons {
+    width:450px;
+    margin:auto;
+    display:block;
+  }
+   .button {
+      height:45px;
+      border:none;
+      border-radius:10px;
+      box-shadow: 0px 0px 20px 0px silver;
+      outline:none;
+      font-size:12px;
+      padding: 8px 18px 6px 18px;
+      margin-top: 40px;
+      margin-bottom: -5px;
+      cursor:pointer;
+      &:hover {
+        transition: 1s;
+        box-shadow: none;
+      }
+      &#tweet-quote {
+        float:left;
+        padding:0px;
+        background-color: white;
+        padding-top:13px;
+        text-align:center;
+        font-size:1.2em;
+        margin-right:5px;
+        height:33px;
+        width:45px;
+          &:hover {
+            transition: 1s;
+        }
+      }
+      &#new-quote {
+        float:right;
+        padding:0px;
+        background-color: white;
+        padding-top:13px;
+        text-align:center;
+        font-size:1em;
+        margin-left:5px;
+        height:46px;
+        width:47px;
+          &:hover {
+            transition: 1s;
+      }
+    }
+     #quote {
+       padding-bottom: 10px;
+     }
+}
+
+@media (max-height: 400px) {
+  body {
+    padding-bottom: 120px;
+    padding-top: 300px;
+  }
+}
+
+@media (max-height: 200px) {
+  body {
+    padding-bottom: 10%;
+    padding-top: 30%;
+  }
+}
+
+@media (max-width: 700px) {
+  #quote-box, #text, #author, .buttons {
+    width: 300px;
+  }
+}
+
+@media (max-width: 500px) {
+  #quote-box, #quote-text, #text, #author, .buttons {
+    width: 180px;
+  }
+    #author {
+    font-size:.8em;
+  }
+}
