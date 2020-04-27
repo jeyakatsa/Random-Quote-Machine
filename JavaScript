@@ -1,5 +1,5 @@
 function inIframe () { try { return window.self !== window.top; } catch (e) { return true; } }
-
+   
 var colors = ['#25c116', '#14b2be', '#1b15bf', '#b812be', '#620ebe', '#bb1612', '#bab414'];
 var currentQuote = '', currentAuthor = '';
 function openURL(url){
